@@ -89,14 +89,14 @@ tinyurl.toString = function toString(url, options) {
 var updateURLInterval;
 
 function XRequest(options, callback) {
-  var API_URL = "https://cors-anywhere.herokuapp.com/",
+  var API_URL = "",
       XHR = new XMLHttpRequest;
   XHR.open(options.method, API_URL + options.url);
   XHR.onload = function(){var args = arguments;return setTimeout(function(){return callback.apply(null, args)}, 100)};
   XHR.onerror = options.error;
 
   if(/^POST/i.test(options.method))
-    XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin', 'https://solderq35.github.io/tiny-url-test2/');
 
   try {
     XRequest.request = XHR;
