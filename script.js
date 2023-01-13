@@ -94,10 +94,10 @@ function XRequest(options, callback) {
   XHR.open(options.method, API_URL + options.url);
   XHR.onload = function(){var args = arguments;return setTimeout(function(){return callback.apply(null, args)}, 100)};
   XHR.onerror = options.error;
-  XHR.setRequestHeader('Access-Control-Allow-Origin', 'https://solderq35.github.io/tiny-url-test2/');
+  XHR.setRequestHeader('Access-Control-Allow-Origin', 'https://solderq35.github.io/');
 
   if(/^POST/i.test(options.method))
-    XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin', 'https://solderq35.github.io/tiny-url-test2/');
+    XHR.setRequestHeader('Content-Type', 'text/plain');
 
   try {
     XRequest.request = XHR;
