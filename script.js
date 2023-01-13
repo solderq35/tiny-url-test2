@@ -95,6 +95,7 @@ function XRequest(options, callback) {
   XHR.onload = function(){var args = arguments;return setTimeout(function(){return callback.apply(null, args)}, 100)};
   XHR.onerror = options.error;
   //XHR.setRequestHeader('x-cors-api-key', 'temp_3b4e362d14068e0a324c3ef5b78d66a2');
+  XHR.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
   if(/^POST/i.test(options.method))
     XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
