@@ -89,16 +89,15 @@ tinyurl.toString = function toString(url, options) {
 var updateURLInterval;
 
 function XRequest(options, callback) {
-  var API_URL = "https://cors-server-production-122b.up.railway.app/",
+  var API_URL = "https://web-production-0113.up.railway.app/",
       XHR = new XMLHttpRequest;
   XHR.open(options.method, API_URL + options.url);
   XHR.onload = function(){var args = arguments;return setTimeout(function(){return callback.apply(null, args)}, 100)};
   XHR.onerror = options.error;
-  //XHR.setRequestHeader('x-cors-api-key', 'temp_3b4e362d14068e0a324c3ef5b78d66a2');
-  //XHR.setRequestHeader('X-Requested-With', 'XMLHttpRequest', 'Content-Type', 'text/plain');
+  
 
   if(/^POST/i.test(options.method))
-    XHR.setRequestHeader('Content-Type', 'text/plain');
+    XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
   try {
     XRequest.request = XHR;
