@@ -58,6 +58,25 @@ submit.click(() => {
 
   $("img.copy").click((img) => {
     var text = $(img.target.getAttribute("parent")).select()[0].innerText;
+	text = $(img.target.getAttribute("parent")).setSelectionRange(0, 99999)[0].innerText;
+	   var oldContentEditable = text.contentEditable,
+        oldReadOnly = text.readOnly,
+        range = document.createRange();
+
+    text.contentEditable = true;
+    text.readOnly = false;
+    range.selectNodeContents(text);
+
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(range);
+
+    text.setSelectionRange(0, 999999); // A big number, to cover anything that could be inside the element.
+
+    text.contentEditable = oldContentEditable;
+    text.readOnly = oldReadOnly;
+
+    //document.execCommand('copy');
     try {
       alert("The text was " + (document.execCommand("copy", false, text)? "": "not ") + "copied to the clipboard.");
     } catch(e) {
